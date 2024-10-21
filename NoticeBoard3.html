@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+    table {
+        border: 3px solid navy; /* 테이블 전체 외곽선 굵게 설정 */
+        border-collapse: collapse;
+        width: 80%; /* 테이블의 너비를 80%로 설정 */
+        margin: 0 auto; /* 테이블을 중앙에 정렬 */
+    }
+    td, th {
+        border: 1px solid navy; /* 내부 선은 기존대로 유지 */
+    }
+    th {
+        font-size: 9pt; /* 헤더 글씨 크기를 줄임 */
+    }
+    /* 동일한 너비 설정 */
+    .equal-width {
+        width: 85px; /* 원하는 너비 값으로 설정 */
+        text-align: center; /* 중앙 정렬 */
+    }
+    body {
+            background: linear-gradient(to right, #FFF9C4, #E8F5E9);
+            /* 파스텔 옐로우에서 파스텔 그린으로 그라데이션 */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+    #title{
+        color: navy;
+        font-size: 13pt;
+        border: 3px solid midnightblue;
+        width: 300px;
+        padding: 1px;
+        background-color: lightsteelblue;
+        margin: 0 auto;
+    }
+    .tr_header{
+        color: blue;
+    }
+    [type="button"], .center-button {
+        width: 100px; 
+        height: 30px;
+        background-color: grey; 
+        color: white;
+        border: none; 
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    [type="button"]:hover, .center-button:hover{
+        background-color: navy;
+    }
+    [type="button"]:active, .center-button:active{
+        background-color: skyblue;
+    }
+    .val{
+        text-align: center;
+        vertical-align: middle; 
+        /* 수직 정렬을 중앙으로 설정 */
+    }
+</style>
+</head>
+<body>
+    <div id="title"> <h1 align=center>掲示板</h1></div><br>
+    <div class="val">
+        <input id="var1" type="text" placeholder="purpose tag">
+        <input id="var2" type="text" placeholder="Message">
+        <input id="var3" type="text" placeholder="mean">
+        <input id="var4" type="text" placeholder="meanAddPhrase">
+        <input id="var5" type="text" placeholder="meanAddMor">
+        <input id="var6" type="text" placeholder="meanAddAll">
+        <input id="var7" type="text" placeholder="runningTime">
+        <input id="var8" type="text" placeholder="yes Value">
+        <input id="var9" type="text" placeholder="no Value"><br><br>    
+        <input id="push" type="button" value="登録">
+        <button id="reload" type="button">リロード</button><br><br><br><br>
+    </div>
+    <table id="dataTable1" border='1' align="center" bgcolor="mintcream">
+        <!-- <thead> -->
+            <tr align="center" height="40">
+                <td colspan='13' style="font-size: 18pt" bgcolor="mistyrose">個人データ照会</td>
+            </tr>
+            <tr class="tr_header" style="font-size: 10pt">
+                <th>Message ID</th>
+                <th>purpose</th>
+                <th>Message</th>
+                <th class="equal-width">mean</th>
+                <th class="equal-width">meanAddPhrase</th>
+                <th class="equal-width">meanAddMor</th>
+                <th class="equal-width">meanAddAll</th>
+                <th>runningTime</th>
+                <th>Send Date</th>
+                <th width="200px">Receive Date</th>
+                <th>Yes Value</th>
+                <th>No Value</th>
+                <th>Yes or No</th>
+            </tr>
+        <!-- </thead>
+        <tbody> -->
+            <tr>
+                <td height="20px"></td>
+                <td></td>
+                <td></td>
+                <td class="equal-width"></td>
+                <td class="equal-width"></td>
+                <td class="equal-width"></td>
+                <td class="equal-width"></td>
+                <td></td>
+                <td></td>
+                <!-- <td> -->
+                    <!-- <button id="btn2" onclick="showCurrentTime()">메세지 보내기</button></td> -->
+                <!-- <button id="btn2" style="margin: 0 auto; display: block;" onclick="showCurrentTime()">메세지 보내기</button></td> -->
+                <td align="center"><button id="btn2" class="center-button" onclick="showCurrentTime()">メッセージ送り</button></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td height="20px"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td align="center"><p id="timeDisplay"></p></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        <!-- </tbody> -->
+    </table><br>
+    <div class="part2" id="teamlist">
+        <table id="dataTable2" border='1' align="center" bgcolor="mintcream">
+            <tr align="center" height="40">
+                <td colspan='2' width="600px" style="font-size: 18pt" bgcolor="mistyrose">2チームデータ照会</td>
+            </tr>
+            <tr class="tr_header" style="font-size: 10pt">
+                <th width="90px">Message ID</th>
+                <th>Message</th>
+            </tr>
+            <td width="90px" height="20px"></td>
+            <td></td>
+        </table><br>
+    </div>
+    <div class="part3" id="totallist">
+        <table id="dataTable3" border='1' align="center" bgcolor="mintcream">
+            <tr align="center" height="40">
+                <td colspan='2' width="600px" style="font-size: 18pt" bgcolor="mistyrose">全データ照会</td>
+            </tr>
+            <tr class="tr_header" style="font-size: 10pt">
+                <th width="90px">Message ID</th>
+                <th>Message</th>
+            </tr>
+            <td width="90px" height="20px"></td>
+            <td></td>
+        </table>
+    </div>
+    <script src="javaAPI.js"></script>
+</body>
+</html>

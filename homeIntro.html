@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .resume-container {
+            width: 700px;
+            margin: 0 auto;
+            border: 2px solid navy; /* 외부 사각형을 남색으로 변경 */
+            padding: 20px;
+            background-color: #f0f0f0; /* 배경색을 회색으로 지정 */
+            /* border-radius: 15px; */
+            border-radius: 25px; /* 전체 사각형을 둥글게 */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* 살짝 그림자 추가로 시각적 편안함 */
+        }
+
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .header-table, .header-table th, .header-table td {
+            border: 1px solid black;
+            vertical-align: top;
+        }
+
+        .header-table th, .header-table td {
+            padding: 5px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .photo-cell {
+            width: 120px;
+            text-align: center;
+        }
+
+        .photo-cell img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .title {
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+            padding: 10px 0;
+        }
+
+        .main-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .header-table, .main-table, .main-table th, .main-table td {
+            border: 1px solid black;
+            vertical-align: top;
+            background-color: white; /* 테이블 배경색 흰색 유지 */
+        }
+
+        .main-table th, .main-table td {
+            padding: 8px;
+        }
+
+        .left-align {
+            text-align: left;
+        }
+
+        .center-align {
+            text-align: center;
+        }
+
+        .spacer {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 10px;
+        }
+
+        /* 상단 테이블 행에 마우스를 올렸을 때 연한 회색 배경 표시 */
+        .header-table tr:hover {
+            background-color: #f2f5ff; /* 연한 회색 배경 */
+        }
+
+        /* 각 테이블 행에 마우스를 올렸을 때 연한 회색 배경 표시 */
+        .main-table tr:hover {
+            background-color: #f2f5ff; /* 연한 회색 배경 */
+        }
+
+        /* 기본 배경색을 흰색으로 유지하면서 hover 시 전체 행의 배경색을 변경 */
+        .main-table tr:hover td {
+            background-color: inherit; /* tr의 배경색을 상속받음 */
+        }
+
+    </style>
+</head>
+<body>
+
+
+    
+<div class="resume-container">
+    <!-- 상단 타이틀 테이블 -->
+    <table class="header-table">
+        <h1 style="text-align: center;">履 歴 書</h1>
+        <tr>
+            <th style="width: 100px;">氏 名</th>
+            <td>沈 載護</td>
+            <td rowspan="6" class="photo-cell">
+                <img src="homeprofile.jpg" alt="Profile Photo">
+            </td>
+        </tr>
+        <tr>
+            <th>生年月日</th>
+            <td>1990年03月03日 (満34歳)</td>
+        </tr>
+        <tr>
+            <th>性 別</th>
+            <td>男</td>
+        </tr>
+        <tr>
+            <th>現住所</th>
+            <td>ソウル特別市 江南区 逸院洞 731 ハンソルマウルアパート</td>
+        </tr>
+        <tr>
+            <th>電話番号</th>
+            <td>82-10-2649-9003</td>
+        </tr>
+        <tr>
+            <th>E-mail</th>
+            <td>jaehoshim90@gmail.com</td>
+        </tr>
+    </table>
+
+    <div class="section-title">学歴・職歴</div>
+        <!-- 학력 테이블 -->
+        <table class="main-table">
+            <tr>
+                <th class="center-align">年</th>
+                <th class="center-align">月</th>
+                <th colspan="3">学歴</th>
+            </tr>
+            <tr>
+                <td class="center-align">2006</td>
+                <td class="center-align">03</td>
+                <td colspan="3" class="left-align">可翔高等学校 入学</td>
+            </tr>
+            <tr>
+                <td class="center-align">2009</td>
+                <td class="center-align">02</td>
+                <td colspan="3" class="left-align">可翔高等学校 卒業</td>
+            </tr>
+            <tr>
+                <td class="center-align">2011</td>
+                <td class="center-align">08</td>
+                <td colspan="3" class="left-align">Valdosta State University Business Administration 入学</td>
+            </tr>
+            <tr>
+                <td class="center-align">2012</td>
+                <td class="center-align">12</td>
+                <td colspan="3" class="left-align">Valdosta State University Business Administration 修了</td>
+            </tr>
+            <tr>
+                <td class="center-align">2013</td>
+                <td class="center-align">03</td>
+                <td colspan="3" class="left-align">大韓民国陸軍 入隊</td>
+            </tr>
+            <tr>
+                <td class="center-align">2015</td>
+                <td class="center-align">01</td>
+                <td colspan="3" class="left-align">大韓民国陸軍 兵役 満期除隊</td>
+            </tr>
+            <tr>
+                <td class="center-align">2016</td>
+                <td class="center-align">03</td>
+                <td colspan="3" class="left-align">延世大学校 経済学部 経済学科 編入</td>
+            </tr>
+            <tr>
+                <td class="center-align">2019</td>
+                <td class="center-align">08</td>
+                <td colspan="3" class="left-align">延世大学校 経済学部 経済学科 卒業</td>
+            </tr>
+    
+
+
+
+
+
+
+
+
+        
+        <!-- 경력 테이블 -->
+            <tr>
+                <th class="center-align">年</th>
+                <th class="center-align">月</th>
+                <th colspan="3">職歴</th>
+            </tr>
+            <tr>
+                <td class="center-align">2018</td>
+                <td class="center-align">12</td>
+                <td colspan="3" class="left-align">ジェホエンジニアリング(建設貿易会社) 創業</td>
+            </tr>
+            <tr>
+                <td class="center-align">2020</td>
+                <td class="center-align">05</td>
+                <td colspan="3" class="left-align">ジェホエンジニアリング(建設貿易会社) 閉業</td>
+            </tr>
+            <tr>
+                <td class="center-align">2023</td>
+                <td class="center-align">06</td>
+                <td colspan="3" class="left-align">Makeasy Inc.(コンサルティング会社) 入社</td>
+            </tr>
+            <tr>
+                <td class="center-align">2024</td>
+                <td class="center-align">02</td>
+                <td colspan="3" class="left-align">Makeasy Inc.(コンサルティング会社) 退社</td>
+            </tr>
+        </table>
+
+        <br>
+        <!-- 研修歴 섹션 -->
+        <div class="section-title">研修歴</div>
+        <table class="main-table">
+            <tr>
+                <th class="center-align">年</th>
+                <th class="center-align">月</th>
+                <th colspan="3">研修歴</th>
+            </tr>
+            <tr>
+                <td class="center-align">2024</td>
+                <td class="center-align">3</td>
+                <td colspan="3" class="left-align">第一期AI人材養成日本就職スクール（主管：産業通商資源部）開始</td>
+            </tr>
+            <tr>
+                <td class="center-align">2024</td>
+                <td class="center-align">11</td>
+                <td colspan="3" class="left-align">第一期AI人材養成日本就職スクール（主管：産業通商資源部）修了込み</td>
+            </tr>
+        </table>
+        
+    <br>
+    <div class="section-title">免許・資格</div>
+        <!-- 면허 및 자격 테이블 -->
+        <table class="main-table">
+            <tr>
+                <th class="center-align">年</th>
+                <th class="center-align">月</th>
+                <th colspan="3">免許・資格</th>
+            </tr>
+            <tr>
+                <td class="center-align">2013</td>
+                <td class="center-align">04</td>
+                <td colspan="3" class="left-align">韓国・第一種普通自動車運転免許（日本の普通自動車運転免許に該当）</td>
+            </tr>
+            <tr>
+                <td class="center-align">2019</td>
+                <td class="center-align">06</td>
+                <td colspan="3" class="left-align">e-Test Professionals(コンピュータ活用能力) 取得</td>
+            </tr>
+            <tr>
+                <td class="center-align">2022</td>
+                <td class="center-align">07</td>
+                <td colspan="3" class="left-align">TOEIC(英語) 880点 取得</td>
+            </tr>
+            <tr>
+                <td class="center-align">2024</td>
+                <td class="center-align">01</td>
+                <td colspan="3" class="left-align">JLPT(日本語) N2 取得</td>
+            </tr>
+            <tr>
+                <td class="center-align">2024</td>
+                <td class="center-align">09</td>
+                <td colspan="3" class="left-align">Paiza B class 取得</td>
+            </tr>
+        </table>
+
+
+
+    <!-- 추가된 테이블들 -->
+    <div class="spacer"></div>
+
+    <!-- "自己ＰＲ" 소제목 추가 -->
+    <div class="section-title">自己ＰＲ</div>
+
+    <table class="main-table">
+        <tr>
+            <td>
+                私の強みは几帳面さと洞察力を活かして周りを助ける姿勢だと思います。
+                私は仕事を進める際、周期的にチェックする習慣を持っています。例えば、兵役時代は全隊員が1ヶ月間必要とする食料の腐食率誤差を3%まで下げた経験があります。担当業務は人事部署から報告を受け、それに伴う1ヶ月分の食材を注文することでしたが、突然の人員変更で費用誤差が10%も発生する場合がありました。私は人員補充計画が迅速に伝わらない当時の報告体系に原因があると判断しました。これを解決するためには、ルールとして上級部隊人事部署に連絡し、実質的な人員補充計画と人員を確認してから中間報告及び点検を体系的に行うための日程表を作成及び共有することで費用の誤差を下げました。
+                また、人間関係を円滑にする疎通に自信があります。アメリカ留学時代にこの能力を活かして問題を解決した経験があります。当時、留学生のために二週間に1回置きで韓国食材が買えるマートに案内するサービスがありましたが、この回数を増やして欲しいという案件がありました。そこで私は両側の意見を数日間にかけてヒアリングし、購買代行リストを作成することを提案しました。購買代行サービスは学生側では代行費を支払えば買いに行かずで必要な物品が得られ、留学生担当側では移動費用が稼げるので両側が満足するシステムとして評価されました。このような強みが貴社の業務で更に活かされればと思います。
+            </td>
+        </tr>
+    </table>
+
+    <div class="spacer"></div>
+
+    <div class="section-title">志望動機</div>
+
+    <table class="main-table">
+        <tr>
+            <td>
+                it分野について大学時代から多くの関心がありました。 第4次産業革命について初めて聞いたときは興味深く、ビッグデータ、AI関連必要な情報を得るためにニュース記事や関連書籍を探してみました。 その後、会社に就職しても日本it企業を調査する機会があって関心を持って持続的に準備してきました。 会社の選択において私に一番重要なことは自由に疎通する雰囲気で働くなら多くのことを学ぶことができるという点です。 
+                そのような点で多様なコミュニケーションを通じて自由な雰囲気でプロジェクトを進行する貴社に大きな魅力を持つようになりました。 また、色んな社内の集まりを通じて先輩たちの教えを学べる環境なので、個人の成長に大きく役立つと判断しました。 入社することになったら、同僚や先輩たちに積極的に近づき、コミュニケーションしながら一生懸命に学ぶ社員になるように努めます。
+            </td>
+        </tr>
+    </table>
+
+    <div class="spacer"></div>
+
+    <div class="section-title">大学学業（専攻科目、得意科目）</div>
+
+    <table class="main-table">
+        <tr>
+            <td>
+                私は大学や社会人経験を通じて問題解決能力を育ててきました。
+                大学卒業後コンサルティング会社に入社した頃、同僚の退社とインターン社員修了により、急に人手が足りない状況が発生しました。この影響で自分が担当していた顧客会社は5社から7社になり、年末まですべての「プロジェクト終了」というゴールが待っていました。入社したばかりで全体の状況が把握できていない状態で、納期内にプロジェクト完了報告をするためには既存の進めた方は変える必要があると判断しました。そこで、私はプロジェクト業務スケジュールを速やかに修正し、業務報告方式の改善案を提案しました。また、二つの長期プロジェクトを間に合わせるため、週ごとに計画を改めて立て進めました。従来の毎週金曜日に1回報告をする方式から1週間に3回（月・水・金）を報告日に指定して進行状況の中で困ったことや問題が発生した部分を速やかにキャッチし、フィードバックを早く収斂することで問題を解決する意図でした。その結果、業務報告準備完了日を早めに繰り上げることができ、納期遅延なしに顧客7社のプロジェクトを全て終えることができました。この経験は私の業務能力を一層高めるきっかけになりました。貴社に入社した際は、このような問題解決能力を発揮してプロジェクトが与えられた時、効率的で素早く対処できる社員になるように努力します。
+
+            </td>
+        </tr>
+    </table>
+
+    <div class="spacer"></div>
+
+    <div class="section-title">課外活動（ゼミ、アルバイト、インターン、語学研修など）</div>
+
+    <table class="main-table">
+        <tr>
+            <td>
+                大学時代はボランティアサークルに入部し、国内・海外へのボランティア活動に励みました。
+                体の不自由な方や劣悪な環境に置かれている方々をお手伝いすることに自分自身、大きな遣り甲斐を感じたためです。韓国国内では老人福祉施設を訪問し、体の不自由な方々の生活空間を掃除したり、食事を助けるアシスタントを担当し、時には一緒に散歩しながら時間を共に過ごすことなど多様な活動を行いました。
+                海外の活動では、タイのバンコクでホームステイをしながら、住宅の外壁が崩れたり、家の内部に水の水路が繋がっていない現地人の家を補修しました。この過程を通して、厳しい環境の中で生きていく人々の大変さを直接体感することができました。このような活動を通じて、周りの人々を大事にし配慮することの重要性を悟りました。入社後は社内・社外の仕事関係者を配慮し、特にチーム内で困難に直面している方々に積極的に助けて、チームワーク向上に寄与する社員になるように努力します。
+
+            </td>
+        </tr>
+    </table>
+
+    <div class="spacer"></div>
+
+    <div class="section-title">趣味・特技</div>
+
+    <table class="main-table">
+        <tr>
+            <td>
+                趣味は筋トレです。
+                小柄な体格がコンプレックスだったので、これを乗り越えるために大学時代からトレーニング映像を見ながら独学で筋トレを始めました。運動を通じて外的な変化はもちろん規則的な生活習慣が形成され、ストレス解消にも役に立ったので、今まで着実に続けています。健康とストレス管理に役立つだけに入社後も周期的に運動を続けたいです。
+                特技はコミュニケーション力です。
+                幼い頃から人々と気楽に話し合いながら意見を交わすことが好きで、学生時代の友達からは、本音を気楽に打ち明けられると評価されています。現在進めているプロジェクトの中でも、この力量を発揮し、チームメンバーが自由に意見共有ができる雰囲気を作り、問題が生じた際は疎通スキルを活かして解決するように努力しています。入社後にもこのようなコミュニケーションスキルを土台により良い成果が出せるように努めます。
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jae Ho's Personal Site</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F4F3EA; /* 배경색 설정 */
+        }
+
+        /* 첫 번째 네비게이션 메뉴 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #e0e0e0;
+        }
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-menu {
+            display: flex;
+            gap: 20px;
+        }
+        .navbar-menu a {
+            text-decoration: none;
+            color: navy; /* 네비게이션 메뉴의 색상을 남색으로 변경 */
+            font-weight: bold;
+        }
+        .navbar-menu a:hover {
+            color: #0078d7;
+        }
+
+        .navbar-logo span {
+            font-size: 1.5em;
+            margin-left: 10px;
+            color: navy; /* 'Personal Site' 텍스트 색상을 남색으로 변경 */
+        }
+
+        /* #user-display {
+            margin-left: 20px;
+            font-weight: bold;
+            color: #0078d7;
+        } */
+
+        .Inquiry-content, .centered-image{
+            text-align: center;
+        }
+
+        /* 이력서 이미지 관련 */
+        .centered-images {
+            display: flex;
+            flex-direction: column; /* 세로 방향으로 나열 */
+            justify-content: center; /* 세로 중앙 정렬 */
+            align-items: center; /* 가로 중앙 정렬 */
+            gap: 20px; /* 이미지 간 간격 설정 */
+            margin-top: 20px; /* 상단 여백 추가 */
+        }
+
+        .doc-image {
+            width: auto;
+            max-height: 70vh; /* 이미지가 너무 커지지 않도록 제한 */
+            margin-bottom: 20px; /* 이미지 사이의 여백 */
+        }
+
+
+        /* 상단 텍스트 영역 스타일 */
+        .highlight-section h1 {
+            margin-top: 20px; /* 위쪽 여백 추가 */
+            margin-bottom: 60px; /* 아래쪽 여백 추가 */
+            text-align: center;
+        }
+
+        .nav-buttons button {
+            background-color: navy;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .top-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: navy;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .top-button:hover {
+            background-color: #005bb5;
+        }
+        .nav-buttons {
+            position: relative;
+            margin: 20px auto;
+        } 
+
+
+        #prevBtn {
+            position: absolute;
+            top: -20px;
+            left: 20px; /* 좌측 상단 위치 */
+        }
+
+        #nextBtn {
+            position: absolute;
+            top: -20px;
+            right: 20px; /* 우측 상단 위치 */
+        }
+
+
+        /* 버튼이 하나만 있을 때 위치 조정 */
+        /* #prevBtn.only-btn {
+            left: calc(50% - 50px);
+        }
+
+        #nextBtn.only-btn {
+            right: calc(50% - 50px);
+        } */
+
+
+        .prev-btn, .next-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 1000;
+        }
+
+        .prev-btn {
+            left: 20px;
+        }
+
+        .next-btn {
+            right: 20px;
+        }
+
+        .prev-btn:hover, .next-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+
+
+
+
+        /* 두 번째 네비게이션 메뉴 (Project1, Project2 전용) */
+        .project1-navbar, .project2-navbar {
+            display: none; /* 기본적으로 숨김 */
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px;
+            background-color: #eaeaea;
+            margin-top: 10px;
+        }
+        .project1-navbar a, .project2-navbar a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #555;
+        }
+        .project1-navbar a:hover, .project2-navbar a:hover {
+            color: #0078d7;
+        }
+        .section {
+            display: none; /* 모든 섹션을 처음에 숨김 */
+            padding: 20px;
+        }
+
+        /* 페이지 내용 스타일 */
+        .section-content {
+            display: none;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+
+
+        .spreadsheet {
+            border: none;
+            width: 97vw; /* 화면 너비 전체 */
+            height: 80vh; /* 화면 높이의 80% */
+            margin: 0 auto;
+            display: block;
+        }
+
+
+
+        /* a1 이미지 위치를 조정하기 위한 스타일 */
+        .a1-container {
+            margin-top: 100px; /* a1 이미지를 아래로 이동 */
+        }
+
+        /* A4 용지 이미지 스타일 */
+        .a4-container {
+            width: 250px; /* 이미지 컨테이너 크기 확대 */
+            height: 180px; /* 높이 확대 */
+            margin: 5px; /* 이미지 사이 여백을 줄여 간격을 최소화 */
+            transition: transform 0.3s; /* 마우스 오버 시 확대 효과를 위한 트랜지션 */
+        }
+
+        .a4-image {
+            width: 100%; /* 이미지가 컨테이너 크기에 맞춰짐 */
+            height: 100%;
+            cursor: pointer; /* 마우스 커서를 올리면 클릭 가능하게 보이도록 */
+            transition: transform 0.3s;
+        }
+
+        /* 마우스 오버 시 확대 효과 */
+        .a4-image:hover {
+            transform: scale(2.8); /* 마우스를 올리면 이미지가 1.3배 확대 */
+        }
+
+        /* 이미지들을 한 줄에 가로로 배치하도록 설정 */
+        
+
+        .a4-container-wrapper {
+            display: flex;
+            justify-content: center; /* 중앙 정렬 */
+            flex-wrap: wrap; /* 여러 줄로 이미지가 표시되도록 설정 */
+            padding: 20px 0; /* 위아래 여백 설정 */
+            gap: 20px; /* 이미지 간격 추가 */
+            margin-top: 150px; /* 이미지와 텍스트 간격을 크게 조정 */
+        }
+
+        .home-section {
+            margin-bottom: 200px; /* 홈 섹션의 아래 여백을 추가하여 공간 확보 */
+        }
+
+        /* 모달 스타일 정의 */
+        .modal {
+            display: none; /* 기본적으로 숨겨진 상태 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8); /* 반투명 검은 배경 */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            border-radius: 10px;
+            width: 90vw; /* 모달 창의 너비를 화면의 90%로 설정 */
+            height: 90vh; /* 모달 창의 높이를 화면의 90%로 설정 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* 스크롤을 제거 */
+            box-sizing: border-box;
+        }
+
+        .modal-image {
+            
+
+            width: 100%; /* 기본 너비를 100%로 설정 */
+            height: auto; /* 높이를 자동으로 조정 */
+
+            
+        }
+
+        .modal-description {
+            margin-top: 15px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .zoom-btn, .zoom-out-btn {
+            position: absolute;
+            top: 10px;
+            background-color: navy;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 1000;
+        }
+
+        .zoom-btn {
+            right: 60px; /* + 버튼 위치 */
+        }
+
+        .zoom-out-btn {
+            right: 120px; /* - 버튼 위치 */
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background-color: transparent;
+            color: #333;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+   
+
+        /* 부모 컨테이너가 화면 중앙에 이미지 배치 */
+        .image-center-wrapper {
+            display: flex;               /* Flexbox 사용 */
+            justify-content: center;     /* 가로 중앙 정렬 */
+            align-items: center;         /* 세로 중앙 정렬 */
+            height: 100vh;               /* 화면 전체 높이 */
+            width: 100vw;                /* 화면 전체 너비 */
+            overflow: hidden;            /* 화면을 벗어나는 부분을 숨김 */
+        }
+
+        /* 특정 이미지를 위한 스타일 */
+        .large-image {
+            width: auto;
+            height: 100%;           /* 화면의 200% 높이로 설정 */
+            object-fit: contain;         /* 비율을 유지하면서 이미지를 화면에 맞게 표시 */
+            border: 1.5px solid #333;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+            transform: scale(2.0);         /* 이미지 크기를 2배로 확대 */
+        }
+
+        .subtext {
+            text-align: center;
+            font-size: 18px;  /* 글씨 크기를 조금 더 크게 설정 */
+            font-family: 'Noto Sans JP', serif;  /* Georgia 글씨체를 사용하여 좀 더 이쁜 글씨체로 설정 */
+            color: gray;
+            margin-top: -50px;  /* 個人プロジェクト와 간격을 줄이기 위해 설정 */
+        }
+
+        /* 개요 섹션 스타일 수정 */
+        .overview-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            margin-top: 40px; /* 텍스트 위치를 아래로 이동 */
+        }
+        .overview-item {
+            margin-bottom: 30px;
+        }
+        .overview-item h3 {
+            font-size: 1.5em;
+            color: #0078d7;
+            margin-top: 20px; /* 추가 상단 여백으로 아래로 이동 */
+        }
+        .overview-item p {
+            font-size: 1.2em;
+            color: #333;
+            margin-top: 10px; /* 텍스트를 조금 더 아래로 이동 */
+        }
+
+        /* 텍스트 링크 스타일 */
+        .text-link {
+            color: #333; /* 기존 텍스트 색상과 일치 */
+            text-decoration: none; /* 밑줄 제거 */
+            cursor: pointer; /* 마우스 커서를 손가락 모양으로 변경 */
+        }
+
+        .text-link:hover {
+            text-decoration: underline; /* 마우스를 올렸을 때만 밑줄 표시 */
+            color: #0078d7; /* 마우스를 올렸을 때 색상 변경 */
+        }
+
+        /* "프로젝트1 구동 영상" 버튼 스타일 추가 */
+        .video-button {
+            background-color: #4A6FA5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .video-button:hover {
+            background-color: navy;
+        }
+
+        /* 클릭 기능 텍스트 스타일 추가 */
+        .clickable-link {
+            color: navy;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .clickable-link:hover {
+            color: #005bb5;
+        }
+
+        /* 이미지 컨테이너를 가로로 배치하는 flexbox */
+        .image-container {
+            display: flex;
+            justify-content: space-between; /* 이미지 사이에 간격을 둠 */
+            gap: 20px; /* 이미지 간격 설정 */
+            margin-top: 20px;
+        }
+
+        /* 프로젝트 이미지 스타일 */
+        .project-image {
+            width: 48%; /* 각 이미지가 가로 공간의 절반씩 차지하도록 설정 */
+            height: auto; /* 비율을 유지하며 이미지의 높이를 자동으로 조정 */
+            border: 2px solid navy; /* 테두리 추가 */
+            border-radius: 5px; /* 모서리를 둥글게 처리 */
+            cursor: pointer; /* 커서를 손가락 모양으로 변경 */
+        }
+
+        /* 프로젝트 이미지 스타일 */
+        .project2-image {
+            width: 10%; /* 각 이미지가 가로 공간의 절반씩 차지하도록 설정 */
+            height: auto; /* 비율을 유지하며 이미지의 높이를 자동으로 조정 */
+            border: 2px solid navy; /* 테두리 추가 */
+            border-radius: 5px; /* 모서리를 둥글게 처리 */
+            cursor: pointer; /* 커서를 손가락 모양으로 변경 */
+        }
+
+        .design-container {
+        display: flex; /* Flexbox를 사용해 가로로 배치 */
+        flex-direction: column; /* 세로로 배열되도록 설정 */
+        justify-content: flex-start; /* 요소 간 간격을 균등하게 배치 */
+        align-items: center; /* 세로로 중앙 정렬 */
+        gap: 20px; /* 이미지와 텍스트 사이 간격 */
+        margin-bottom: 40px; /* 컨테이너 아래쪽에 여백 추가 */
+        }
+
+        .design-image {
+            width: 100%; /* 이미지가 차지할 최대 너비 */
+            max-width: 1000px; /* 이미지의 최대 너비 제한 */
+            height: auto; /* 비율을 유지하며 이미지 높이를 자동으로 설정 */
+        }
+
+        .design-text {
+            width: 100%; /* 텍스트가 컨테이너 전체 너비를 차지하도록 설정 */
+            max-width: 1000px; /* 텍스트의 최대 너비 제한 */
+            text-align: center; /* 텍스트를 중앙 정렬 */
+        }
+
+
+
+
+
+        .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: 'Arial', sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .styled-table thead tr {
+        background-color: navy; /* 연한 남색 */
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .styled-table th, .styled-table td {
+        padding: 12px 15px;
+        border: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr {
+        background-color: #e0e0e0; /* 회색 */
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #d0d0d0; /* 짝수 행을 약간 더 짙은 회색으로 */
+    }
+
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+
+    .styled-table tbody tr:hover {
+        background-color: #f1f1f1; /* 행을 마우스로 오버했을 때 연한 색상 */
+    }
+
+    h2 {
+    color: navy; /* 글씨 색상을 navy로 변경 */
+    }
+
+    </style>
+</head>
+<body>
+
+    <!-- 첫 번째 네비게이션 메뉴 (페이지 전환용) -->
+    <header>
+        <div class="navbar">
+            <div class="navbar-logo">
+                <span style="font-weight: bold;">自己紹介サイト</span>
+                <span id="user-display"></span>
+            </div>
+            <nav class="navbar-menu">
+                <a href="#" onclick="showSection('home')">ホーム</a>
+                <!-- <a href="#" onclick="showSection('about')">About</a> -->
+                <a href="#" onclick="loadResume()">紹介</a> <!-- About을 클릭하면 loadResume 호출 -->
+                <!-- <a href="#" onclick="showSection('schedule')"></a> -->
+                <a href="#" onclick="showSection('project1')">プロジェクト1</a>
+                <a href="#" onclick="showSection('project2')">プロジェクト2</a>
+                <a href="#" onclick="showSection('Inquiry')">コンタクト</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Project1 전용 네비게이션 -->
+    <div id="project1-navbar" class="project1-navbar">
+        <a href="#" onclick="showSection('project1-overview')">概要</a>
+        <a href="#" onclick="showSection('project1-plan')">企画</a>
+        <a href="#" onclick="showSection('project1-design')">設計</a>
+        <!-- <a href="#" onclick="showSection('project1-results')">結果物</a> -->
+        <a href="#" onclick="openNewTab1()">結果物</a>
+        <a href="#" onclick="showSection('project1-api')">API 文書</a>
+        <a href="#" onclick="showSection('project1-schedule')">スケジュール</a>
+    </div>
+
+    <!-- Project2 전용 네비게이션 -->
+    <div id="project2-navbar" class="project2-navbar">
+        <a href="#" onclick="showSection('project2-overview')">概要</a>
+        <a href="#" onclick="showSection('project2-plan')">企画及び設計</a>
+        <!-- <a href="#" onclick="showSection('project2-results')">結果物</a> -->
+        <a href="#" onclick="openNewTab2()">結果物</a>
+        <a href="#" onclick="showSection('project2-api')">API文書</a>
+        <a href="#" onclick="showSection('project2-schedule')">スケジュール</a>
+    </div>
+
+    <!-- 메인 콘텐츠 섹션 -->
+    <main>
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <button id="prevBtn" onclick="navigateToSection('prev')">戻る</button>
+            <!-- 戻る?로 바꿔야 되나? -->
+            <button id="nextBtn" onclick="navigateToSection('next')">次に</button>
+            <!-- <button id="prevBtn" onclick="navigateToSection('prev')">前に</button>
+            <button id="nextBtn" onclick="navigateToSection('next')">次に</button> -->
+        </div>
+
+        <!-- 각 섹션 정의 -->
+        <!-- <div id="home" class="section">
+            <h1>Home Section</h1>
+            <p>홈 섹션 내용입니다.</p>
+        </div> -->
+        <div id="home" class="section highlight-section home-section" style="display: block;">
+            <div class="profile-container" style="background-color: #add3f5; width: 120%; height: 400px; display: flex; align-items: center; justify-content: flex-start; padding: 20px;">
+                <!-- 왼쪽 이미지 섹션 -->
+                <div class="profile-image" style="margin-left: 80px;">
+                    <img src="homeprofile.jpg" alt="Profile Image" style="width: 250px; height: 300px;">
+                </div>
+        
+                <!-- 오른쪽 텍스트 섹션 -->
+                <div class="profile-text" style="margin-left: 40px;">
+                    <h2>沈載護<シム·ジェホ></h2>
+                    <p>始めまして. 志願者のシム·ジェホです。<br>
+                        私に関心を持ってくださって, 自己<a href="#" onclick="showSection('about')" style="text-decoration: underline;">紹介</a>サイトに入場してくださってありがとうございます。 <br>
+                        サイトでご不明な点がございましたら、<a href="#" onclick="showSection('Inquiry')" style="text-decoration: underline;">コンタクト</a>内の電子メールにご連絡ください。</p>
+                    <!-- <p><strong>住所:</strong> 大韓民国 ソウル特別市 江南区 逸院洞731 ハンソルマウルアパート </p> -->
+                    <p><strong>電子メール:</strong> jaehoshim90@gmail.com</p>
+                    <p><strong>電話番号:</strong> 82-10-2649-9003</p>
+                    <p><strong>活用能力:</strong> HTML、CSS、JavaScript　／　FastAPI、 Python 3.10.11　／　mySQL 8.0.39<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visual Studio Code　／　Ubuntu 22.04　／　Postman<br>
+                    </p>
+                    <p><strong>資格証:</strong> jlpt N2、ファイザー B class
+                        <img src="paiza1.png" alt="Image 1" style="width: 70px; height: 70px; margin-left: 5px;">
+                        <img src="paiza2.png" alt="Image 2" style="width: 70px; height: 70px; margin-left: 5px;">
+                    </p>
+                    <p><strong>プロジェクト参加履歴:</strong><br>
+                        プロジェクト名: 
+                        <a href="#" class="text-link" style="text-decoration: underline;" onclick="showSection('project1')">(1)&nbsp;睡眠関連ヘルスケアAI機器</a> / 
+                        <a href="#" class="text-link" style="text-decoration: underline;" onclick="showSection('project2')">(2)&nbsp;私だけのカフェリスト</a><br>
+                        <!-- (1)睡眠関連ヘルスケアAI機器  / 
+                        (2)私だけのカフェリスト<br> -->
+                        チーム人数: 6人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;担当役: 副リーダー
+                    
+                </div>
+            </div>
+            <h1>個人プロジェクト</h1>
+            <!-- Google Fonts를 사용하여 Noto Sans JP 폰트 추가 -->
+            <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+
+            <div class="subtext">
+                    プロジェクト2で行った「私だけのカフェリスト」ウェブアプリケーションに関する内容を総整理<br>
+            <p>すでに知っていると思っても自分で書いてみて考えを整理しないと自分のスキルになれないということに気づきました。<br> 一つのテーマを見て、自分の思う通りに書いてみると、自分がどんな部分に集中して、どんな部分が足りないのかすぐに分かるので、良い習慣を持っていようと思いました。<br> 
+                一つのプロジェクトについて全般的な過程を考え出すことができ、その過程の中で具体的にどんな業務に着手することになるのか把握できます。<br> プロジェクトを成功的に完了するのに大きな自信になると思います。<br>
+                最初、自分が知っている通りに書くより、見える人の立場で書いていたら、型にはまった内容だけを書いていました。<br> 教育担当者から迅速にフィードバックを受け、進行して希望する結果を得ることができました。
+            </p>
+            </div>
+
+            <!-- 이미지가 가로로 1줄로 배치된 A4 이미지 컨테이너 -->
+            <div class="a4-container-wrapper">
+                <div class="a4-container a1-container">
+                    <!-- <img src="a1.jpg" alt="Project Image 1" class="a4-image" onclick="openModal(this)"> -->
+                    <img src="privateproject1.jpg" alt="Project Image" class="a4-image large-image" onclick="openModal(this)">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <!-- About에는 직접 텍스트를 입력하는 방식으로 진행할 예정! 수정해야함!!!!!!!!!!!!!!!!!!!!!!!! -->
+        <!-- <div id="about" class="section centered-image">
+            <div id="imageContainer"></div> -->
+                <!-- 이미지가 동적으로 추가될 위치 -->
+        <!-- </div> -->
+
+
+        
+
+        <div id="about" class="section">
+            <!-- 이 곳에 빈 페이지가 추가됩니다 -->
+            <div id="about-content">
+                <!-- 빈 페이지 영역 -->
+            </div>
+        </div>
+
+
+
+
+
+        
+        <!-- <div id="schedule" class="section">
+            <h1>Schedule Section</h1>
+            <p>스케줄 섹션 내용입니다.</p>
+        </div> -->
+
+        <!-- <div id="schedule" class="section spreadsheet-content">
+            <h2>Google Spreadsheet (전체 스케줄을 만들고 커서표시되도록 할것!왼쪽 열고정을 하여 일정 또는 대제목과 연계되도록 할것. 확대 축소 기능 첨부)</h2> -->
+            <!-- <iframe id="excelViewer" class="excel-viewer"></iframe> -->
+            <!-- <iframe id="spreadsheet" class="spreadsheet" src="https://docs.google.com/spreadsheets/d/19c2Tr5ucZQsDg31vDMdV-4O3RrEcpvyR5LcWxvOt3ck/edit?gid=687661464#gid=687661464"></iframe>
+        </div> -->
+
+        <div id="project1" class="section">
+            <h1>Project 1&nbsp;&nbsp;&lt;Health Care AI（睡眠）管理者掲示板&gt;</h1>
+
+            <!-- 이미지가 2개 가로로 배치되는 컨테이너 -->
+            <div class="image-container">
+                <!-- <img src="Project1image1.png" alt="Image 1" class="project-image">
+                <img src="Project1image2.png" alt="Image 2" class="project-image"> -->
+                <!-- 이미지 클릭 시 모달 창이 열리도록 onclick 이벤트 추가 -->
+                <img src="Project1image1.png" alt="Image 1" class="project-image" onclick="openModal(this)">
+                <img src="Project1image2.png" alt="Image 2" class="project-image" onclick="openModal(this)">
+            </div>
+            
+            <!-- "프로젝트1 구동 영상" 버튼 추가 -->
+            <button class="video-button" onclick="showVideo()">プロジェクト1駆動映像</button>
+
+            <p>ウェブページは大きくトップページと掲示板ページで構成されています。
+                Top pageでは、管理者の名前が書かれたボタンを作成し、入場時に本人の名前を選択して掲示板にアクセスするように設計しました。
+                掲示板ページには大きく入力ウィンドウとボタン、そして個人、チーム、全体の結果を表示するテーブルで構成されています。
+                入力ウィンドウに情報を記入して登録ボタンを押すと、個人データ照会テーブルの一番下に1行が追加されます。
+                メッセージ送信ボタンを押すと、Send Dateカラムに時間が表示されます。 その後、リロードボタンをクリックすると、2チームデータ照会および全体データ照会テーブルの下段にも同じように1行が生成されます。 ユーザーから回答が来ると、最初に送信したメッセージの下に「ㄴ回答内容」形式で追加されます。</p>
+            <p>活用ツール:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;フロントエンド&nbsp; → &nbsp;HTML &nbsp;/&nbsp; CSS &nbsp;/&nbsp; JavaScript<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;バックエンドフレームワーク&nbsp; → &nbsp;FastAPI &nbsp;/&nbsp;Python 3.10.11<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;サーバー&nbsp; → &nbsp;Ubuntu 22.04<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;データベース&nbsp; → &nbsp;mySQL 8.0.39<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APIプラットフォーム(テスト用)&nbsp; → &nbsp;Postman<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;統合開発環境(IDE)&nbsp; → &nbsp;Visual Studio Code</p>
+            <p>詳細は 
+                <span class="clickable-link" onclick="showSection('project1-overview')">概要ページ</span>
+                でご確認ください。</p>
+            <p>ありがとうございます！</p>
+        </div>
+
+        <div id="project2" class="section">
+            <h1>Project 2&nbsp;&nbsp;&lt;私だけのカフェリスト&nbsp;in&nbsp;神戸&gt;</h1>
+
+            <!-- 이미지가 8개 가로로 배치되는 컨테이너 -->
+            <div class="image-container">
+                <!-- <img src="Project1image1.png" alt="Image 1" class="project-image">
+                <img src="Project1image2.png" alt="Image 2" class="project-image"> -->
+                <!-- 이미지 클릭 시 모달 창이 열리도록 onclick 이벤트 추가 -->
+                <img src="Project2image1.png" alt="Image 1" class="project2-image" onclick="openModal(this)">
+                <img src="Project2image2.png" alt="Image 2" class="project2-image" onclick="openModal(this)">
+                <img src="Project2image3.png" alt="Image 3" class="project2-image" onclick="openModal(this)">
+                <img src="Project2image4.png" alt="Image 4" class="project2-image" onclick="openModal(this)">
+                <img src="Project2image5.png" alt="Image 5" class="project2-image" onclick="openModal(this)">
+                <img src="Project2image6.png" alt="Image 6" class="project2-image" onclick="openModal(this)">
+                <img src="Project2image7.png" alt="Image 7" class="project2-image" onclick="openModal(this)">
+                <img src="Project2image8.png" alt="Image 8" class="project2-image" onclick="openModal(this)">
+            </div>
+
+            <!-- "프로젝트2 구동 영상" 버튼 추가 -->
+            <button class="video-button" onclick="showVideo2()">プロジェクト2駆動映像</button>
+
+            <p>ウェブページは大きくログインする画面、ユーザーからメッセージを受け取る画面、そしてリストを表す画面の3部類で構成されています。<br>
+                最初に、"いらっしゃいませ" というテキストをクリックして、入場ページを作成しました。 次に、ログインボックスを作成しましたが、パスワードを探す機能、会員登録、ログイン機能などが含まれています。ログインした後は、左上にメールアドレスが表示されるようにし、既存のリストを読み込むボタンと新たにリストを作成するボタンの2つを選択できるようにしました。<br>
+                リストを新しく作成する時は、最初にどんなカフェを希望するのか言えば、これを録音するように設計しました。 スタイルとサービス、2つの基準に分けられるため、GPT-4モデルを活用してユーザーの回答がスタイル、サービスのいずれかに分類されるようにしました。 次に、反対分類されていない基準から代表的なタイプの中から一つを選択するようにしました。 たとえば、最初にサービスに分類される場合は、スタイル関連の代表的なタイプを3つ提示してクリックするように設計しました。 最終的に、ユーザの2 つの回答を合わせたC テキスト（A テキスト+B テキスト）が生成され、表示されることになります。 Cテキストを生成し、キーワード抽出も同時に行われるため、ロード時間が3-4秒ほどかかることがあります。 抽出されたキーワードとCテキストを活用してAIイメージを生成し、神戸にあるカフェ3ヶ所を探してカフェリストを提供します。</p>
+            <p>活用ツール:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;フロントエンド&nbsp; → &nbsp;HTML &nbsp;/&nbsp; CSS &nbsp;/&nbsp; JavaScript<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;外部API&nbsp; → &nbsp;Google(STT, TTS) &nbsp;/&nbsp; OpenAI<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;バックエンドフレームワーク&nbsp; → &nbsp;FastAPI &nbsp;/&nbsp;Python 3.10.11<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;サーバー&nbsp; → &nbsp;Ubuntu 22.04<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;データベース&nbsp; → &nbsp;mySQL 8.0.39<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APIプラットフォーム(テスト用)&nbsp; → &nbsp;Postman<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;統合開発環境(IDE)&nbsp; → &nbsp;Visual Studio Code</p>
+            <p>詳細は 
+                <span class="clickable-link" onclick="showSection('project2-overview')">概要ページ</span>
+                でご確認ください。</p>
+            <p>ありがとうございます！</p>
+        </div>
+
+        <!-- <div id="Inquiry" class="section">
+            <h1>Inquiry Section</h1>
+            <p>문의 섹션 내용입니다.</p>
+        </div> -->
+
+        <div id="Inquiry" class="section Inquiry-content">
+            <h2>Contact Information</h2>
+            <p><strong>Name:</strong> 沈載護 シム·ジェホ</p>
+            <p><strong>Email:</strong> jaehoshim90@gmail.com</p>
+            <p><strong>Phone:</strong> 82-10-2649-9003</p>
+            <p><strong>GitHub:</strong> なし (添付予定)</p>
+            <p>お問い合わせがある場合は、上記のパスでご連絡ください。</p>
+            <br><br><br><br><br><br>
+            <h2>今まで私の個人紹介サイトを利用してくださってありがとうございます。<br> 近いうちにお会いできる日があるといいですね。<br> 誠にありがとうございます !</h2>
+        </div>
+
+        <!-- Project 1 상세 섹션들 -->
+        <!-- <div id="project1-overview" class="section">
+            <h2>Project 1 概要</h2>
+            <p>프로젝트 1 개요 내용입니다.</p>
+        </div> -->
+
+
+        <!-- <div id="project1-overview" class="section" style="display: none;"> -->
+        <div id="project1-overview" class="section">
+            <h1>Project 1 概要</h1>
+            <div class="overview-item">
+                <h2>プロジェクト名</h2>
+                <p>Health Care AI（睡眠）管理者掲示板</p>
+                <!-- 사진 첨부할것! 커서를 대면 확대되고 선택할 수 있게 -->
+            </div>
+            <div class="overview-item">
+                <h2>目的</h2>
+                <p>Kcal消耗する時間を増やして規則的(健康な)睡眠習慣を作ってあげる。</p>
+            </div>
+            <div class="overview-item">
+                <h2>コンセプト</h2>
+                <p>睡眠を通じて体重に応じたkcalを消費しよう</p>
+            </div>
+            <div class="overview-item">
+                <h2>ターゲットユーザー</h2>
+                <p>18-34歳(新社会人の時期から健康に気をつけるべき年齢になる直前まで)</p>
+            </div>
+            <div class="overview-item">
+                <h2>目標</h2>
+                <p>活力あふれる1日のための規則正しい睡眠時間(7時間)を守ろう</p>
+            </div>
+
+            <div class="overview-item">
+                <h2>データベース設計</h2>
+                <!-- 테이블 추가 -->
+                <table class="styled-table">
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Null</th>
+                        <th>Key</th>
+                        <th>Default</th>
+                    </tr>
+                    <tr>
+                        <td>Data_id</td>
+                        <td>int</td>
+                        <td>No</td>
+                        <td>PRI</td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>Manager</td>
+                        <td>varchar(10)</td>
+                        <td>No</td>
+                        <td></td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>Purpose</td>
+                        <td>text</td>
+                        <td>No</td>
+                        <td></td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>Sentence</td>
+                        <td>text</td>
+                        <td>No</td>
+                        <td></td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>Meaning</td>
+                        <td>float</td>
+                        <td>Yes</td>
+                        <td></td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>Construction</td>
+                        <td>float</td>
+                        <td>Yes</td>
+                        <td></td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>Morpheme</td>
+                        <td>float</td>
+                        <td>Yes</td>
+                        <td></td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>Meaning_construction</td>
+                        <td>float</td>
+                        <td>Yes</td>
+                        <td></td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>Meaning_morpheme</td>
+                        <td>float</td>
+                        <td>Yes</td>
+                        <td></td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>Meaning_construction_morpheme</td>
+                        <td>float</td>
+                        <td>Yes</td>
+                        <td></td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>Transmission_time</td>
+                        <td>timestamp</td>
+                        <td>Yes</td>
+                        <td></td>
+                        <td>CURRENT_TIMESTAMP</td>
+                    </tr>
+                    <tr>
+                        <td>Response_time</td>
+                        <td>timestamp</td>
+                        <td>Yes</td>
+                        <td></td>
+                        <td>CURRENT_TIMESTAMP</td>
+                    </tr>
+                    <tr>
+                        <td>User_id</td>
+                        <td>varchar(6)</td>
+                        <td>Yes</td>
+                        <td></td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>Answer_yes</td>
+                        <td>int</td>
+                        <td>Yes</td>
+                        <td></td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>Answer_no</td>
+                        <td>tinyint(1)</td>
+                        <td>Yes</td>
+                        <td></td>
+                        <td>NULL</td>
+                    </tr>
+                </table>
+                <p>mobaxtermで生成したデータテーブルです。 <br>
+                    詳細は設計画面でご確認いただけます。
+                </p>
+            </div>
+    
+    
+            <div class="overview-item">
+                <h2>集中した部分</h2>
+                <p>管理者の役職として
+                    納期遵守のためにスケジュールチェック、中間報告、意見を出すことができる自由な雰囲気を作り、コミュニケーションに問題が発生しないよう仲裁、一人一人のチームメンバーが遅れを取らないようサポート(連絡業務)</p>
+            </div>
+            <div class="overview-item">
+                <h2>プロジェクトを通じて学んだこと</h2>
+                <p>キーワード用語の整理
+                    設計図面を描いた部分
+                    valueを分けた部分
+                    二つ/新サーバー整理
+                    画面構成に関する会議/DB設計に関する会議</p>
+            </div>
+            <div class="overview-item">
+                <h2>プロジェクト会議時困ったとき解決した部分</h2>
+                <p>    
+                    &gt; 点数を分ける部分でいろいろな意見があって、一つにまとめるのが簡単ではなかった。<br>
+                    企画書をもとに点数基準を細かく分けて十分な討議をして決定。 時間短縮<br><br>
+                    
+                    &gt; テーブルのタイプ、タイプなど細かい内容を決める時、<br>
+                    それぞれ作ってみて作った理由を聞いてみて決めるように進行<br><br>
+                    
+                    &gt; 理解できなかったり、難しい部分があった時、<br>
+                    質問リストを作ってその都度解決して迅速に進行可能<br><br>
+                    
+                    &gt; 参加が低調で仕事の進行が円滑でない場合、<br>
+                    最初は意見がないかどう思うか聞いてからそれでも返事がない時は<br>
+                    チームメンバーにメッセージを伝え、一人ずつみんなの話を聞いた後、<br>
+                    展開方向を再確立して再度進める</p>
+            </div>
+        </div>
+
+
+
+        <div id="project1-plan" class="section">
+            <h1>Project 1 企画</h1>
+            <h2>学んだこと</h2>
+            <p>企画をしながらチーム員たちと意見を共有する方式を学び、多様な意見がある時に最善の結果を出せる選択肢をどのように選ぶか悩みました。 
+                また、自分で考えてみてチームメンバーとも共有し、ひいてはプログラム担当者の方とも相談しながらコミュニケーション能力を育てることができました。</p>
+
+            <h2>これを通じてできること</h2>
+            <p>プロジェクト企画を通じてコミュニケーションを活発にできる雰囲気を作り、日程に遅れないように企画の合間にすべき業務を整理して共有しました。 
+                入社した以後にも積極的に意見を提示してもっと良い結果物を作るために努力します。</p>
+
+            <h2>問題がある時どんな方式で解決するのか</h2>
+            <p>企画を初めてすることになった時
+                目標とターゲットユーザーを決めましたが、目的とコンセプトが具体的にどのように違うのか比較するのが難しかったです。 そこで、プロジェクトの中心となるkcal消耗時間という基本概念を考え、目的とコンセプトを指定しました。<br>
+                どんなテーマでやるべきか決められず、進行状況が停滞したことがあります。 チームメンバーたちと十分に相談したのに明確な内容が出てこなかったので、実際にit業界に経験のある知人たちに助言を求め、テーマを早く決定して進めることができました。</p>
+
+            <iframe src="Pro1plan.pdf" class="pdf-viewer"></iframe>
+        </div>
+
+        <div id="project1-design" class="section">
+            <h1>Project 1 設計</h1>
+            <!-- 첫 번째 이미지와 텍스트 컨테이너 -->
+            <div class="design-container">
+                <!-- 이미지 -->
+                <div class="design-image">
+                    <img src="project1design1.png" alt="Design Image" style="width: 120%; max-width: 1000px; height: auto;">
+                </div>
+                <!-- 텍스트 -->
+                <div class="design-text">
+                    <p>まず画面設計で、font関連ではLine seed、Notosans JPの2つを指定しました。 この理由は一つでフォントを指定してみましたが、ウェブページから見ると少し単調に見えるという意見がチーム内にありましたので、全体のタイトルとチーム名を2つのフォントに設定しました。次に、色に関しては正しい睡眠習慣を作るのに役立つプログラムを作ることが2チーム企画書の目的だったので、睡眠しやすい夜空を連想して藍色系に指定しました。</p>
+                </div>
+            </div>
+
+            <div class="design-container">
+                <!-- 왼쪽 이미지 -->
+                <div class="design-image">
+                    <img src="project1design2.png" alt="Design Image" style="width: 120%; max-width: 1000px; height: auto;">
+                </div>
+                <!-- 오른쪽 텍스트 -->
+                <div class="design-text">
+                    <p>上に見える画面は同じ画面設計の部分ですが、CSSコードを中心にまとめてみました。
+                        表のタイトルやコラム名は中央揃えにして簡潔に整理し、テーブルの内容や入力ウィンドウがある部分は左揃えにして、様々な整列を設定してみました。</p>
+                </div>
+            </div>
+
+            <div class="design-container">
+                <!-- 왼쪽 이미지 -->
+                <div class="design-image">
+                    <img src="project1design3.png" alt="Design Image" style="width: 120%; max-width: 1000px; height: auto;">
+                </div>
+                <!-- 오른쪽 텍스트 -->
+                <div class="design-text">
+                    <p>そして、機能設計に関してはいくつかの機能を使用しましたが、データを入力した時、下に1行を追加できる「追加する」ボタンとテーブル各行前のチェック欄を通じて複数行をチェックして削除し、管理、修正できる、機能を含んでいます。 
+                        また、各行の最後にある削除、修正ボタンを通じて行内にある内容を修正したり、削除するための機能を追加しました。 最後に、ある作業を進めた時、初期値に戻るためのreloadボタンで大きく4つの機能ができるように設計を進めました。</p>
+                </div>
+            </div>
+
+            <div class="design-container">
+                <!-- 왼쪽 이미지 -->
+                <div class="design-image">
+                    <img src="project1design4.png" alt="Design Image" style="width: 120%; max-width: 1000px; height: auto;">
+                </div>
+                <!-- 오른쪽 텍스트 -->
+                <div class="design-text">
+                    <p>データベースの設計は難しい部分があって、チームメンバー同士でかなり相談を進めました。
+                        データ共有をしていると連動することが必要になり、この連動をする状況でカラム値やデータタイプを設定する際に本当に必要な部分を把握しようと努力しました。 
+                        チーム内部で様々な意見がありましたが、他チームの意見も考慮して最も必須な部分だけ一致するように方向性を決めました</p>
+                </div>
+            </div>
+
+            <div class="design-container">
+                <!-- 왼쪽 이미지 -->
+                <div class="design-image">
+                    <img src="project1design5.png" alt="Design Image" style="width: 120%; max-width: 1000px; height: auto;">
+                </div>
+                <!-- 오른쪽 텍스트 -->
+                <div class="design-text">
+                    <p>個別的に、テーブルを作る時にどのように設計してコードをどのように書くか一度考えてみて相談を進めました。<br>
+                        そのため、上に見える画面は、それぞれ作成したコードを総合して出た結果だと言えます。</p>
+                </div>
+            </div>
+
+            <div class="design-container">
+                <!-- 왼쪽 이미지 -->
+                <div class="design-image">
+                    <img src="project1design6.png" alt="Design Image" style="width: 120%; max-width: 1000px; height: auto;">
+                </div>
+                <!-- 오른쪽 텍스트 -->
+                <div class="design-text">
+                    <p>これは、実際にmobaxtermに入力したときに出た画面です。
+                        purposeやsentenceはメッセージ関連の文章が入るコラムですが、後で追加の内容が入ると思って制限を設けずにtext型に指定しました。
+                        次に、意味、構文、形態素といったユーザーの回答に対する数値が入力されるカラムは、floatタイプに指定しました。
+                        送出時間と回答時間はtimestampで類型を決めましたが、送出時間は管理者がいつGoogle Homesを通じて送出するのか指定するので、null値が出てはいけないと思ってnot nullに指定しました。
+                        そしてAnswer yes部分はint型に割り当てられるように進行し、answer noカラムはboolean型に指定しました
+                        boolean型は結果が0.1で答えが出ますが、0はfalse、1はtrueで答えが出なかった時にanswernoがtrueの1で現れ、答えが出た時にanswernoがfalseの0で現れます。 
+                        そうでなければ、偽りで値が現れるので、この部分がnullに指定されてはいけないと思い、チームと相談した後、not nullに指定しました。 </p>
+                </div>
+            </div>
+
+            <div class="design-container">
+                <!-- 왼쪽 이미지 -->
+                <div class="design-image">
+                    <img src="project1design7.png" alt="Design Image" style="width: 120%; max-width: 1000px; height: auto;">
+                </div>
+                <!-- 오른쪽 텍스트 -->
+                <div class="design-text">
+                    <p>上の図はチームで相談した内容をもとにデータタイプやチームで作ったルールを考慮して実際の値を入力した結果画面です。 
+                        チームDB設計パートで他のチームと相談を進めながらデータ及びコラムタイプなどを変更しました。</p>
+                </div>
+            </div>
+
+            <div class="design-container">
+                <!-- 왼쪽 이미지 -->
+                <div class="design-image">
+                    <img src="project1design8.png" alt="Design Image" style="width: 120%; max-width: 1000px; height: auto;">
+                </div>
+                <!-- 오른쪽 텍스트 -->
+                <div class="design-text">
+                    <p>次は、画面およびデータ設計に関する総合内容です。
+                        チームが構想した左上のテーブル設計内容をはじめ、データの追加および転送過程、削除、更新(リロード)過程を示しています。
+                         追加、削除、更新機能はAPIを通じてPythonと接続された後、mobaxterm上のawsサーバーに接続され、データが保存されます。</p>
+                </div>
+            </div>
+
+            <div class="design-container">
+                <!-- 왼쪽 이미지 -->
+                <div class="design-image">
+                    <img src="project1design9.png" alt="Design Image" style="width: 120%; max-width: 1000px; height: auto;">
+                </div>
+                <!-- 오른쪽 텍스트 -->
+                <div class="design-text">
+                    <p>最後に、システム全体の設計内容が一目でわかるように説明した図です。 
+                        大きく3つの構成で構成され、データベース、ユーザー関連テーブルのデータ移動過程、画面設計関連内容が含まれています。</p>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            
+
+            <iframe src="Pro1design.pdf" class="pdf-viewer"></iframe>
+        </div>
+
+        <div id="project1-api" class="section">
+            <h1>Project 1 API 文書</h1>
+
+            <h2>学んだこと</h2>
+            <p>api文書を作成する様式を見て、どのように情報を記入するのか、どのように核心情報を選んで入れるのかを考えながら作成しました。 
+                エラーコードが出た時、ただ問題があるとばかり思っていましたが、メッセージを通じて原因を知らせる目的が大きいことに気づきました。</p>
+
+            <h2>これを通じてできること</h2>
+            <p>api文書の作成により、エンドポイントを含むバックエンドコードを設計することができます。 エラーコードのタイプを見て、どのような問題が発生したのかを類推することができます。</p>
+
+            <h2>問題がある時どんな方式で解決するのか</h2>
+            <p>初めてapi文書作成を要請された時エンドポイントやパラメータなどをどのように作成すれば良いのかよく分からなかったです。 それぞれの定義と実際のコードがどのように使われるのかを見ながら理解しようと努力しました。</p>
+
+            <iframe src="https://docs.google.com/spreadsheets/d/13CWTz83pEUUSZj8WalLjFPUH5G5uNQs6rbztbcQn5Uk/edit?gid=1250214401" class="pdf-viewer"></iframe>
+        </div>
+
+        <div id="project1-schedule" class="section">
+            <h1>Project 1 スケジュール</h1>
+
+            <h2>学んだこと</h2>
+            <p>チームメンバーのスケジュールを体系的に管理するスケジュール表を作りました。 これにより、納期に間に合わせるためにはスケジュール表の管理が非常に重要だということに気づきました。</p>
+
+            <h2>これを通じてできること</h2>
+            <p>スケジュール表を作成する際、現在の進行状況を考慮して納期に間に合うように管理が可能です。 学習速度が遅いチームメンバーがいれば、今後の一日の課題を共有し、日程進行に支障がないようにしました。</p>
+
+            <h2>問題がある時どんな方式で解決するのか</h2>
+            <p>プログラムのスケジュールはありますが、具体的に何からするのが正しい方法なのかよく分からなくて、現在やっていることだけに集中してこれから何をするのかあまり気にしていませんでした。 担当者と相談してチームメンバーと話し合いながら、これから何をするのかを考えて共有していきました。</p>
+
+            <iframe src="https://docs.google.com/spreadsheets/d/19c2Tr5ucZQsDg31vDMdV-4O3RrEcpvyR5LcWxvOt3ck/edit?gid=687661464" class="pdf-viewer"></iframe>
+        </div>   
+
+
+
+        <!-- <div id="project2-overview" class="section" style="display: none;"> -->
+        <div id="project2-overview" class="section">
+            <h1>Project 2 概要</h1>
+            <div class="overview-item">
+                <h2>プロジェクト名</h2>
+                <p>私だけのカフェリスト&nbsp;in&nbsp;神戸</p>
+                <!-- 사진 첨부할것! 커서를 대면 확대되고 선택할 수 있게 -->
+            </div>
+            <div class="overview-item">
+                <h2>目的</h2>
+                <p>神戸にすでに住んでいたり、新しく訪れる韓国人観光客に様々な特徴を持つ神戸カフェリストをニーズに合わせて提供</p>
+            </div>
+            <div class="overview-item">
+                <h2>コンセプト</h2>
+                <p>神戸に来た韓国人観光客(コーヒーが好きな人/神戸旅行中カフェに行きたい人/神戸のコーヒーに興味のある人)に神戸カフェのリスト提供</p>
+            </div>
+            <div class="overview-item">
+                <h2>ターゲットユーザー</h2>
+                <p>神戸にすでに住んでいたり、神戸旅行の計画がある韓国人</p>
+            </div>
+            <div class="overview-item">
+                <h2>目標</h2>
+                <p>ユーザーの入力を通じてユーザーだけのカフェリスト提供<br>
+                    例>カフェ1/カフェ2/カフェ3
+                </p>
+            </div>
+
+            <!-- <div class="overview-item">
+                <h2>データベース設計</h2>
+                <p>간단하게 몇줄로 요약해서 DB정보 제시(사진 내용 설명도)<br>
+                    사진 첨부하여 제시
+                </p>
+            </div> -->
+            
+            <div class="overview-item">
+                <h2>集中した部分</h2>
+                <p>管理者の役職として
+                    体系的にスケジュールを作って納期内に結果物が完成するよう日程管理に集中(結果物の中間チェック及び進行状況報告)<br>
+                    バックエンドパートに集中してコード作成及びフロントとのウェブページ連動のためのコミュニケーションを実施<br>
+                    発表資料の整理および報告(企画、画面設計資料の作成、など)</p>
+            </div>
+            <div class="overview-item">
+                <h2>プロジェクトを通じて学んだこと</h2>
+                <p>企画書類整理/画面設計部分整理<br>
+                    STT/GPT/生成型aiモデル活用(aiイメージ生成)コード作成<br>
+                    Cテキスト(ユーザーが回答した2つのテキスト混合)生成/キーワード抽出関連コード設計</p>
+            </div>
+            <div class="overview-item">
+                <h2>プロジェクト会議時困ったとき解決した部分</h2>
+                <p>    
+                    &gt; Speech-to-Text(STT)、キーワード抽出、cText及びcafeListを生成するバックエンドコード設計が難しかった。(코드사진 첨부)<br>
+                    バックエンド担当チーム員たちと相談して各自エンドポイントコードを作ってみて修正および補完する内容を探して最終コード完成<br><br>
+                    
+                    &gt; CテキストやcafeListなどを生成するコード作成においてフロントとデータベース(ワークベンチ)との連動が難しかった。<br>
+                    データパーシングを通じて共通のタイプ（Json形式）で伝えられるようにフロントエンド担当チームメンバーと相談<br>
+                    ワークベンチで生成したテーブル内データを呼び出し/処理/アップデートするコード部分バックエンドチームメンバーと議論した後修正<br><br>
+                    
+                    &gt; プロジェクト2を終える報告日まで時間が迫っていた。<br>
+                    以前報告したチームスケジュール以外に個人スケジュールを作って体系的に進行状況管理<br> 
+                    週別、日別に細かく分けて課題を進め、問題なく報告完了</p>
+            </div>
+        </div>
+
+
+
+        <!-- Project 2 상세 섹션들 -->
+        <!-- <div id="project2-overview" class="section">
+            <h1>Project 2 概要</h1>
+            <p>프로젝트 2 개요 내용입니다.</p>
+        </div> -->
+
+        <div id="project2-plan" class="section">
+            <h1>Project 2 企画及び設計</h1>
+            
+            <h2>学んだこと</h2>
+            <p>企画をするにあたって, 誰かに役に立つという考えも良いが, たまには私に役に立つことならば他人達にも役に立つことができる 考え方の転換が必要だということを学びました。</p>
+
+            <h2>これを通じてできること</h2>
+            <p>企画をすると同時に設計及びスケジュール管理業務も並行しましたが、色々な業務があっても仕事の優先順位を決めて日程に問題がないように進めることができました。 
+                また、企画報告を準備するにあたって、ppt資料及び画面設計内容を一人で作成してみて学習してみましたが、今後このような業務を担当することになれば成功的に完了することができます。</p>
+
+            <h2>問題がある時どんな方式で解決するのか</h2>
+            <p>研修担当者の助けなしにテーマを決めてどんなプログラムを作るのが良いかについて決めなければならないので
+                悩んだことがありますが、チームメンバーと積極的に相談すれば良いアイデアがたくさん出てくると思いました。 
+                持続的な対話をした末、プロジェクト2は1と違ってテーマが限定的ではないので、私たちの状況に合うテーマを決定すれば良いと提案しました。 また、私たちが生活しながら助けを受けられるプログラムを構想してみようと話しながら企画を進めました。</p>
+
+            
+            <!-- 이미지가 3개 가로로 배치되는 컨테이너 -->
+            <div class="image-container">
+                <!-- <img src="Project1image1.png" alt="Image 1" class="project-image">
+                <img src="Project1image2.png" alt="Image 2" class="project-image"> -->
+                <!-- 이미지 클릭 시 모달 창이 열리도록 onclick 이벤트 추가 -->
+                <img src="project2design1.jpg" alt="Image 1" class="project-image" onclick="openModal(this)" style="max-width: 25%; height: auto; margin-right: 5px;">
+                <img src="project2design2.jpg" alt="Image 2" class="project-image" onclick="openModal(this)" style="max-width: 25%; height: auto; margin-left: 5px;">
+                <img src="project2design3.png" alt="Image 3" class="project-image" onclick="openModal(this)" style="max-width: 90%; height: 400px; margin-top: 20px;">
+            </div>
+
+            <p>上の画面のうち、左側の2つはフロント担当チーム員が作成して共有した資料で、右側の資料は中間報告のために自ら作成してみた画面設計資料です。 
+                フロント資料を直接作って整理しながら、全体の過程がどのように行われ、ボタンを通じてどのような機能がどのような順序で作動するのか理解できる良い機会でした。 
+                その後、apiコードを作成する時フロントとのコミュニケーションがとても重要でしたが、何の問題もなくうまく進めることができました。
+                画面設計をするときにチームメンバーと話し合いながら進めると、アイデアを得るのに非常に役立つと思います。 入社した後にも困難がある時同僚たちに積極的に尋ねて見ることができる社員になるでしょう。</p>
+            
+            <iframe src="Pro2plandesign.pdf" class="pdf-viewer"></iframe>
+        </div>
+
+        <!-- <div id="project2-design" class="section">
+            <h2>Project 1 設計</h2>
+            <iframe src="Pro1design.pdf" class="pdf-viewer"></iframe>
+        </div> -->
+
+        <div id="project2-api" class="section">
+            <h1>Project 2 API 文書</h1>
+
+            <h2>学んだこと</h2>
+            <p>STTや生成ai、GPTなどの外部apiでエンドポイント、パラメータ、リターン値などを把握し、実際のコードを以前よりも早く設計しました。 映像や写真のような形式もapi文書形式で整理しました。</p>
+
+            <h2>これを通じてできること</h2>
+            <p>コードを作成する際に、api文書内のエンドポイントアドレスやパラメータ、リターン値などを構想することができます。</p>
+
+            <h2>問題がある時どんな方式で解決するのか</h2>
+            <p>外部のapiをたくさん使うのでコードを設計するのに困難が大きかったです。 たとえapi文書を通じて基本形式を把握して進行しましたが、外部のapiコードを作成するには限界があったようです。 それでチーム員たちとそれぞれ作ったapi文書とコードを共有しながらコード設計を進めました。</p>
+
+            <iframe src="https://docs.google.com/spreadsheets/d/1qXn6SelXDuXI5XHIEcjG49M1mkyqqxC30yTkdSSsyNQ/edit?gid=680391511#gid=680391511" class="pdf-viewer"></iframe>
+        </div>
+
+        <div id="project2-schedule" class="section">
+            <h1>Project 2 スケジュール</h1>
+
+            <h2>学んだこと</h2>
+            <p>プロジェクトを終えるのにどのような課題が追加的に必要で、どのようなことを先にすべきなのかなどを学ぶことができました。 今後新しい仕事をする時においても必要な業務とプロセスを把握してスケジュール管理ができます。</p>
+
+            <h2>これを通じてできること</h2>
+            <p>仕事の順序を決めて所要日数を計算し、体系的なスケジュール表の作成及び日程管理が可能です。</p>
+
+            <h2>問題がある時どんな方式で解決するのか</h2>
+            <p>スケジュール管理に混乱が生じ、プロジェクトの最終報告日が遅れた状況が発生しました。 現在何をしているのか、どんな目的でやっているのかを考えるより、プロジェクトをどうすれば早く終わらせることができるのかに没頭してスケジュールを早めて進めていて、方向性を失ってしまいました。 
+                担当者に発表日が遅れた理由と今後進むべき方向性を報告書様式で作って報告した後、プロジェクトを進めました。 最大限報告日を繰り上げるために追加計画を作り、授業外の時間にもチーム活動をしました。</p>
+
+            <iframe src="https://docs.google.com/spreadsheets/d/1A9jOR46X03IWrXUDsod0dK9sGOCd6twxKCF7q4zxWes/edit?gid=414528954#gid=414528954" class="pdf-viewer"></iframe>
+        </div> 
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+
+    <!-- 모달 창 -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <!-- <button class="zoom-btn zoom-in-btn" onclick="zoomIn()">+</button>
+            <button class="zoom-btn zoom-out-btn" onclick="zoomOut()">-</button>
+            <button class="close-btn" onclick="closeModal()">✕</button>
+            <img id="modalImage" class="modal-image" src="" alt="Project Image">
+            <button class="prev-btn" onclick="prevImage()">&#10094;</button>
+            <button class="next-btn" onclick="nextImage()">&#10095;</button> -->
+
+            <button class="zoom-btn" onclick="zoomIn()">+</button>
+            <button class="zoom-out-btn" onclick="zoomOut()">-</button>
+            <button class="close-btn" onclick="closeModal()">✕</button>
+            <img id="modalImage" src="" alt="Modal Image">
+            <button class="prev-btn" onclick="prevImage()">&#10094;</button>
+            <button class="next-btn" onclick="nextImage()">&#10095;</button>
+        </div>
+    </div>
+
+    
+
+    <!-- Topへ 버튼 추가 -->
+    <button id="topBtn" class="top-button" onclick="scrollToTop()">Topへ</button>   
+
+    <!-- 비디오 재생 영역 -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeVideoModal()">✕</button>
+            <video id="project1Video" controls>
+                <source src="project1movie.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+
+    <div id="videoModal2" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeVideoModal2()">✕</button>
+            <video id="project2Video" controls>
+                <source src="project2movie.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- JavaScript 추가 -->
+    <script src="navigation.js"></script>
+    <!-- <script>
+        // 각 섹션을 보이게 하는 함수
+        function showSection(sectionId) {
+            // 모든 섹션을 숨깁니다.
+            document.querySelectorAll('.section, .section-content').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // 선택한 섹션만 보이도록 설정
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script> -->
+
+</body>
+</html>

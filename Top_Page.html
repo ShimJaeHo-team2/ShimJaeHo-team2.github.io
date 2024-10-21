@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <!-- 브라우저에 HTML 문서가 UTF-8 인코딩을 사용하고 있음을 알려줌. 이렇게 하면 모든 한글이 정상적으로 표시 -->
+    <title></title>
+</head>
+<style>
+     body {
+            background: linear-gradient(to right, #FFF9C4, #E8F5E9);
+            /* 파스텔 옐로우에서 파스텔 그린으로 그라데이션 */
+        }
+    /* ジェホ 버튼의 스타일을 설정 */
+    #navigate {
+            font-weight: bold; /* 글씨를 진하게 설정 */
+            color: navy; /* 검은색으로 유지 */
+            font-size: 18px; /* 글씨 크기를 좀 더 크게 설정 */
+        }
+    /* 나머지 버튼의 텍스트는 연한 회색으로 설정 */
+    .team2:not(#navigate), .team3 {
+            color: #D3D3D3; /* 연한 회색으로 설정 */
+        }
+
+
+    .team2{
+    width:100px;
+    height:50px;
+    border:10px solid #00008C;
+    /* 두께 10픽셀, 실선 스타일, 어두운 파란색 계열로 테두리 설정 */
+    border-radius:10px;
+    /* 각 모서리를 둥글게 처리하여 반지름을 10픽셀로 설정 */
+    background:#fff;
+    font-size: 14px;
+    cursor: pointer;
+    }
+    
+    .team2:hover{
+    border-image:linear-gradient(#0064FF,#91B9F5);
+    /* #0064FF에서 #91B9F5으로 선형 그라데이션을 생성.  */
+    border-image-slice: 1;
+    /* border-image-slice 속성은 테두리 이미지가 해당 요소 테두리에 어떻게 배치하는지 정의.
+    값이 1인 경우 이미지 전체가 테두리로 사용됨. */
+    }
+    /* :hover 클래스는 해당 요소 위에 마우스를 올렸을때 스타일 적용위해 활용. 
+    클릭하기 전에 무엇에 커서가 올라가 있고 선택이 될지 미리 알려주기 위해 삽입 */
+
+    .team3{
+    width:100px;
+    height:50px;
+    border:10px solid #00008C;
+    /* 두께 10픽셀, 실선 스타일, 어두운 파란색 계열로 테두리 설정 */
+    border-radius:10px;
+    /* 각 모서리를 둥글게 처리하여 반지름을 10픽셀로 설정 */
+    background:#fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+    
+    .team3:hover{
+    border-image:linear-gradient(#0064FF,#91B9F5);
+    /* #0064FF에서 #91B9F5으로 선형 그라데이션을 생성.  */
+    border-image-slice: 1;
+    /* border-image-slice 속성은 테두리 이미지가 해당 요소 테두리에 어떻게 배치하는지 정의.
+    값이 1인 경우 이미지 전체가 테두리로 사용됨. */
+    }
+    /* :hover 클래스는 해당 요소 위에 마우스를 올렸을때 스타일 적용위해 활용. 
+    클릭하기 전에 무엇에 커서가 올라가 있고 선택이 될지 미리 알려주기 위해 삽입 */
+
+    /* .team:hover {
+    background-color:blue
+    } 예시와 동일하게 전체 배경색 처리*/
+    .container {
+    display: grid;
+    /* CSS 그리드 컨테이너로 설정 */
+    /* 그리드 레이아웃을 사용하면 요소들을 행과 열로 정렬 가능 */
+    width: 500px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* 그리드 컨테이너를 네 개의 동일한 너비의 열로 나눔.
+    각각의 열이 1fr 동일한 비율로 공간을 차지, fr은 "fraction"의 약자로, 남은 공간의 비율을 나타냄. */
+    gap: 3px;
+    /* 그리드 셀 사이의 간격을 3픽셀로 설정 */
+    }
+    </style>
+    
+<body>
+    <br><br><h1 align="center">Top page</h1><br><br><br><br><br><br>
+    <!-- 상단에 top page라는 웹페이지 제목을 중앙정렬하여 작성 -->
+    
+
+    <table border='5' style="margin-left:auto; margin-right:auto;">
+    <!-- 테이블 바깥쪽 테두리 두께를 설정하고 전체화면에서 정중앙에 위치하도록 설정 -->
+        <tr align="center" height="40">
+        <!-- 네임 박스안 글자 중앙 정렬화 -->
+            <td style="font-size: 18pt">
+            <!-- 네임 박스안 글자 크기 설정 -->
+                <div class="container">
+                <!-- 그리드 컨테이너를 활용하여 배열 적용 -->
+                <button class="team2">グァンシ</button>
+                <button class="team2">ジョンホ</button>
+                <button class="team2" id="navigate">ジェホ</button>
+                <!-- <div class="team2">
+                    <button id="navigate" type="button">심재호</button>
+                </div> -->
+                <button class="team2">デソン</button>
+                <button class="team2">サンギュ</button>
+                <button class="team2">セリョン</button>
+                <!-- team2와 team3을 나눠서 배정하여 차후 팀 차원에서 수정할 부분이 있을때 호출 및 작업이 용이하게 함 -->
+                <button class="team3">グァンジ</button>
+                <button class="team3">ジフン</button>
+                <button class="team3">サンファ</button>
+                <button class="team3">ジュンク</button>
+                <button class="team3">ヘイン</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script src="webtransition.js"></script>
+</body>
+</html>
